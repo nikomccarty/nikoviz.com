@@ -17,54 +17,93 @@ $('.toggle').on('click', function(event) {
     
   });
 
-var width = 400,
-    height = 400,
-    step_size = 5;
-
-var svg = d3.select("#random-walk")
-            .append("svg")
-            .attr("viewBox", [0, 0, width, height])
-
-// const chartTitle = g =>
-// g
-//     .append("text")
-//     .attr("font-family", "sans-serif")
-//     .attr("font-size", 15)
-//     .attr("x", width - 130)
-//     .attr("y", height - 20)
-//     .html("A Random Walker")
-
-// const title = svg.append("g").call(chartTitle);
-
-function get_sign() {
-    return Math.random() > .5 ? 1 : -1;
-}
-
-function take_step(position) {
-    var step = step_size * get_sign();
-    if (Math.random() > .5)
-        return {"x" : position.x + step, "y" : position.y};
-    return {"x" : position.x, "y" : position.y + step};
-}
-
-function add_line(position, next_position, colour) {
-    svg.append("line")
-        .attr("x1", position.x)
-        .attr("y1", position.y)
-        .attr("x2", next_position.x)
-        .attr("y2", next_position.y)
-        .attr("stroke", colour)
-        .attr("stroke-width", 1);
-}
-
-var pos = {"x" : width/2, "y" : height/2};
-var next_pos;
-var counter = 0;
-
-d3.timer(function() {
-    next_pos = take_step(pos);
-    add_line(pos, next_pos, "white");
-    pos = next_pos;
-})
-
-document.getElementById("random-walk").setAttribute("align", "center");
+  async function d3RandomWalk() {
+    const width = 400;
+    const height = 400;
+    const step_length = 5;
+  
+    var svg = d3.select("#random-walk")
+                .append("svg")
+                .attr("viewBox", [0, 0, width, height])
+  
+    function direction() {
+        return Math.random() > .5 ? 1 : -1;
+    }
+    console.log(Math.random())
+  
+    function take_step(position) {
+        var step = step_length * direction();
+        if (Math.random() > 0.5)
+            return {"x" : position.x + step, "y" : position.y};
+        return {"x" : position.x, "y" : position.y + step};
+    }
+  
+    function add_line(position, next_position) {
+        svg.append("line")
+            .attr("x1", position.x)
+            .attr("y1", position.y)
+            .attr("x2", next_position.x)
+            .attr("y2", next_position.y)
+            .attr("stroke", "black")
+            .attr("stroke-width", 2);
+    }
+  
+    let pos = {"x" : width/2, "y" : height/2};
+    let next_pos;
+    let counter = 0;
+  
+    var timePassed = d3.timer(function(elapsed) {
+        next_pos = take_step(pos);
+        add_line(pos, next_pos);
+        pos = next_pos;
+        if (elapsed > 30000) timePassed.stop();
+    })
+  }
+  
+  d3RandomWalk();
+  
+  
+  async function p5RandomWalk() {
+    let sketch = function(p) {
+      let x;
+      let y;
+      let x_next;
+      let y_next;
+      
+      p.setup = function(){
+        p.createCanvas(400, 400);
+        p.background(242,237,225);
+        x = p.width / 2;
+        y = p.height / 2;
+      }
+      p.draw = function(){
+        const step = p.floor(p.random(4));
+        switch (step) {
+          case 0:
+            x_next = x + 5;
+            y_next = y;
+            break;
+          case 1:
+            x_next = x - 5;
+            y_next = y;
+            break;
+          case 2:
+            y_next = y + 5;
+            x_next = x;
+            break;
+          case 3:
+            y_next = y - 5;
+            x_next = x;
+            break;
+        }
+        p.stroke(0);
+        p.strokeWeight(3);
+        p.line(x, y, x_next, y_next);
+        x = x_next;
+        y = y_next;
+          }
+    };
+    new p5(sketch, 'p5-canvas');
+  }
+  
+  p5RandomWalk()

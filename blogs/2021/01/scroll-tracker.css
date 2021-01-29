@@ -175,15 +175,12 @@ pre code {
 }
 
 /* BLOG CSS HERE */
-
-#random-walk {
-    align: center;
-    margin: 0 auto;
-    padding: 0px;
+.line {
+	fill: none;
+	stroke: #bbb;
+	stroke-width: 1.5px;
 }
 
-#p5-canvas {
-    align: center;
-    margin: 0 auto;
-    padding: 0;
+#scroll-tracker {
+  margin: 10px;
 }

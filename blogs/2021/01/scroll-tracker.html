@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-77949830-4"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-77949830-4');
+	</script>
+
+	<!-- Basic -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Niko | Scroll Tracker</title>
+	<meta name="description" content="Scroll Tracker Made with D3.js">
+	<meta name="keywords" content="D3.js, dataviz, visualization, data, graphics, interactive, random, walk">
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<!-- Ionicons -->
+	<!-- <link rel="stylesheet" href="../../../css/ionicons.css">	 -->
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<!-- Font -->
+	<link rel="stylesheet" href="https://use.typekit.net/ajw0cyt.css">
+
+	<!-- P5.js Scripts -->
+	<!-- <script src="../../../js/p5.min.js"></script>
+	<script src="../../../js/p5.dom.min.js"></script> -->
+
+	<!-- Highlight -->
+	<script src="../../../js/highlight/highlight.pack.js"></script>
+	<script src="../../../js/highlight/highlightjs-badge.min.js"></script>
+	<link rel="stylesheet" href="../../../css/highlight/atom-one-light.css">
+	
+	<!-- CSS for Specific Blog -->
+	<link rel="stylesheet" href="scroll-tracker.css" />
+
+</head>
+
+<body>
+
+<div class="info-box">
+	<span class="toggle intro">?</span>
+		<div class="content">
+		<p>Welcome to my blog. I do my utmost to make my code transparent and easy to understand. Send me an <a href="mailto:nsmccarty3@gmail.com" target="_blank">email</a> with feedback!</p>
+		</div>
+</div>
+
+<a href="../../../index.html" class="btn return-home">&#8592;Return Home</a> 
+		
+<div class="spacer">
+<h1>Scroll-tracker with D3.js</h1>
+
+<div id="scroll-tracker"></div>
+
+<p>
+	Scroll with your mouse (or finger) and watch the line plot update in real time. This scroll tracker was made with D3.js version 5, and is adapted from original code by <a href="https://bost.ocks.org/mike/" target="_blank">Mike
+		Bostock</a>, which I <a href="https://bost.ocks.org/mike/path/" target="_blank">found online</a>, inspected, and then recreated.
+</p>
+
+<pre><code class="javascript">
+async function drawLines() {
+
+  var n = 200,
+	duration = 395,
+	now = new Date(Date.now() - duration),
+	count = 0,
+	data = d3.range(n).map(function () {
+		return 0;
+	});
+
+  var margin = { top: 20, right: 20, bottom: 20, left: 40 };
+
+  var width = 960;
+  var height = 500;
+
+  var svg = d3
+  	.select("#chart")
+  	.append("svg")
+  	.attr("preserveAspectRatio", "xMinYMin meet")
+  	.attr("viewBox", "-20 -20 1000 750")
+  	.style("padding", 5)
+  	.style("margin", 5);
+
+  var g = svg
+  	.append("g")
+  	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var x = d3
+  	.scaleTime()
+  	.domain([now - (n - 2) * duration, now - duration])
+  	.range([0, width]);
+
+  var y = d3.scaleLinear().range([height, 0]);
+
+  var line = d3
+  	.line()
+  	.curve(d3.curveBasis)
+  	.x(function (d, i) {
+  		return x(now - (n - 1 - i) * duration);
+  	})
+  	.y(function (d, i) {
+  		return y(d);
+  	});
+
+  svg
+  	.attr("width", width + margin.left + margin.right)
+  	.attr("height", height + margin.top + margin.bottom)
+  	.style("margin-left", -margin.left + "px")
+  	.append("g")
+  	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  svg
+  	.append("defs")
+  	.append("clipPath")
+  	.attr("id", "clip")
+  	.append("rect")
+  	.attr("width", width)
+  	.attr("height", height);
+
+  var axis = svg
+  	.append("g")
+  	.attr("class", "x axis")
+  	.attr("transform", "translate(0," + height + ")")
+  	.call(d3.axisBottom(x));
+
+  var path = svg
+  	.append("g")
+  	.attr("clip-path", "url(#clip)")
+  	.append("path")
+  	.datum(data)
+  	.attr("class", "line")
+  	.transition()
+  	.duration(405)
+  	.ease(d3.easeLinear)
+  	.on("start", tick);
+
+  d3.select(window).on("scroll", function () {
+  	++count;
+  });
+
+  function tick() {
+  	now = new Date();
+  	x.domain([now - (n - 2) * duration, now - duration]);
+  	y.domain([0, d3.max(data)]);
+
+  	data.push(Math.min(70, count));
+  	count = 0;
+
+  	d3.select(this).attr("d", line).attr("transform", null);
+
+  	d3
+  		.active(this)
+  		.attr("transform", "translate(" + x(now - (n - 1) * duration) + ")")
+  		.transition()
+  		.on("start", tick);
+
+  	axis.transition().duration(750).ease(d3.easeLinear).call(d3.axisBottom(x));
+
+  	data.shift();
+  }
+
+}
+drawLines()
+</code></pre>			
+
+<pre><code class="css">
+.line {
+	fill: none;
+	stroke: #bbb;
+	stroke-width: 1.5px;
+}
+</code>
+</pre>
+
+<!-- END SPACER -->
+</div>
+
+<a href="../../../index.html" class="btn return-home">&#8592;Return Home</a> 
+
+		  
+<script src="../../../js/d3.min.js"></script>
+
+<!-- Script for Blog -->
+<script src="scroll-tracker.js"></script>
+
+<!-- Highlight Script -->
+<script src="../../../js/highlight/run-highlight.js"></script>
+
+</body>
+</html>

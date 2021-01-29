@@ -12,23 +12,17 @@
 	gtag('config', 'UA-77949830-4');
 	</script>
 
-	
-
 	<!-- Basic -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Niko | Random Walkers</title>
 	<meta name="description" content="Random Walkers Made with p5.js and vanilla JavaScript">
 	<meta name="keywords" content="D3.js, dataviz, visualization, data, graphics, interactive, random, walk">
-
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
 	<!-- Ionicons -->
-	<link rel="stylesheet" href="../../../css/ionicons.css">	
-
+	<!-- <link rel="stylesheet" href="../../../css/ionicons.css">	 -->
 	<!-- jQuery -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	
 	<!-- Font -->
 	<link rel="stylesheet" href="https://use.typekit.net/ajw0cyt.css">
 
@@ -51,36 +45,151 @@
 <div class="info-box">
 	<span class="toggle intro">?</span>
 		<div class="content">
-		<p>Add some stuff here about the fact that your site is so awesome people might need help realizing all the awesome.</p> 
-		<p>Some people are curious and will click everything. Most people probably won't click this, so don't include anything too important.</p>
-		<p>The CSS includes a fix so the buttons do not stick on the hover state on mobile (smaller screens). Part of the fix relies on toggling the "open" class with javascript.</p>
+		<p>Welcome to my blog. I do my utmost to make my code transparent and easy to understand. Send me an <a href="mailto:nsmccarty3@gmail.com" target="_blank">email</a> with feedback!</p>
 		</div>
 </div>
 
 <a href="../../../index.html" class="btn return-home">&#8592;Return Home</a> 
 		
 <div class="spacer">
-<h1>Info drawers with swanky buttons</h1>
-<p>I added one question button at the top and one at the bottom to demonstrate how the slide affects the position of the other content on the page. This button was adapted from another unused button I made and this pen was created during the ongoing development of my over-engineered personal blog template. Check out the related pens <a href="https://codepen.io/collection/nNzawW/">here</a>.</p>
-<p>Cupcake ipsum dolor sit amet marshmallow sweet roll sesame snaps jujubes. Gummies bonbon toffee sesame snaps. Chocolate bar croissant fruitcake pastry. Sweet roll tiramisu marzipan powder jelly beans muffin oat cake. Icing danish icing toffee marzipan gingerbread. Wafer gummi bears sugar plum oat cake biscuit.</p>
-<p>Brownie danish danish. Chocolate cake tootsie roll fruitcake sweet roll. Icing ice cream apple pie jujubes muffin. Chocolate cake cupcake soufflé jelly beans jujubes liquorice croissant pie. Carrot cake pudding danish dragée. Croissant liquorice oat cake cookie apple pie halvah candy cake marshmallow. Icing sweet chupa chups ice cream.</p>
-<p>Sweet roll carrot cake tiramisu ice cream. Brownie pudding sugar plum pie. Cake cake tiramisu jelly. Soufflé gummies sugar plum sweet roll powder croissant powder. Lollipop cookie biscuit cotton candy marshmallow carrot cake. Croissant halvah pastry jujubes jelly beans donut.</p>
+<h1>Random walkers, made with D3.js and p5.js</h1>
 
 <p>I wrote my first line of code when I was 25, as a PhD student at Caltech. That was one year ago, and it was all Python. Now, I'm practicing JavaScript every day, because I think it will help me be a better journalist, merging writing with interactive visualizations. 
 	I'm still very much learning, and I used to be ashamed of that. I used to think that, since I was learning, I could not possibly post examples of my work because they wouldn't be good enough. I now feel that's a foolish mindset, and so I've been trying to put everything I do on this website; by tracking my posts over time, I can see the coding progress that I am making.</p>
 
 <p>Today, I built a two-dimensional random walker (2D) in two different ways. In the first iteration, I'll use <a href="https://d3js.org/" target="_blank">D3.js</a> and a bit of vanilla JavaScript. Then, I'll show how that code can be reduced considerably by using <a href="https://p5js.org/reference/" target="_blank">p5.js</a>. Join me!</p>
-</div>
-
-<pre><code class="javascript">
-var x = 'test';
-</code></pre>
-		  
+	
 <div id="random-walk"></div>
 
+<p>The random walker above was made with D3.js. The first thing I did was create an asynchronous function, called d3RandomWalk, and then call it. In that function, I set three variables that specify the length of each "step" in the random walker, as well as the width and height of the svg wrapper that holds the animation.</p>
 
+<pre><code class="javascript">
+async function d3RandomWalk() {
+	const width = 400;
+	const height = 400;
+	const step_length = 5;
+}
 
+d3RandomWalk();
+</code></pre>
 
+<p>Next, I use the D3.js library to select a div element in my HTML, and append an svg to it.</p>
+
+<pre><code class="javascript">
+var svg = d3.select("#random-walk")
+	.append("svg")
+	.attr("viewBox", [0, 0, width, height])
+</code></pre>
+
+	<p>Now we can append the random walker to that svg element, and it will display on the page. To create the actual random walker, there are three functions that are needed: 'direction', 'take_step', and 'add_line'.</p>
+
+<pre><code class="javascript">
+function direction() {
+	return Math.random() > .5 ? 1 : -1;
+}
+
+function take_step(position) {
+	var step = step_length * direction();
+	if (Math.random() > 0.5)
+		return {"x" : position.x + step, "y" : position.y};
+	return {"x" : position.x, "y" : position.y + step};
+}
+
+function add_line(position, next_position) {
+	svg.append("line")
+		.attr("x1", position.x)
+		.attr("y1", position.y)
+		.attr("x2", next_position.x)
+		.attr("y2", next_position.y)
+		.attr("stroke", "black")
+		.attr("stroke-width", 2);
+	}
+</code></pre>
+
+		<p>The first function, 'direction', uses JavaScript's Math.random() function, coupled to a switch statement, to return a +1 or -1 digit. 
+			The next function, 'take_step', then uses that +1 or -1, in addition to <em>another Math.random()</em> statement, to "decide" where to step next; left, right, up, or down. Finally, the 'add_line' function uses D3.js to draw the physical, black line that renders on the SVG. I've set the stroke to black, and the stroke-width to 2, but you could easily make these lines appear in a myriad of colors.
+		</p>
+
+		<p>In the final bit of code, I set up a timer function that stops the random walker after 30 seconds. It uses the functionality of <a href="https://github.com/d3/d3-timer#timer_stop" target="_blank">d3.timer()</a>.</p>
+
+<pre><code class="javascript">
+let pos = {"x" : width/2, "y" : height/2};
+let next_pos;
+
+var timePassed = d3.timer(function(elapsed) {
+	next_pos = take_step(pos);
+	add_line(pos, next_pos);
+	pos = next_pos;
+	if (elapsed > 30000) timePassed.stop();
+})
+</code></pre>
+
+	<p>And that's it! That's a simple way to make a two-dimensional random walker using JavaScript. Next, let's see how all that code can be condensed into ~40 lines of code, using the p5.js library.</p>
+
+	<div id="p5-canvas"></div>
+
+	<p>The code to create the random walker with p5.js (shown above) is pretty simple. First, define necessary variables for the line (which takes four arguments, initial x and y coordinates, as well as "future" x and y coordinates). I used p5's built-in "random" function to decide which direction to step, and then drew lines for each iteration through the loop. 
+		The reason that this code works, and runs repeatedly without any loops, is because the "draw" function in p5.js automatically runs on repeat, while the setup function runs just once. That makes p5.js really versatile and fun to play with to create moving, interactive sketches. You can even set the frame rate of the draw() function to change the speed of each loop.</p>
+
+<pre><code class="javascript">
+async function p5RandomWalk() {
+	let sketch = function(p) {
+		let x;
+		let y;
+		let x_next;
+		let y_next;
+		
+		p.setup = function(){
+		p.createCanvas(400, 400);
+		p.background(255);
+		x = p.width / 2;
+		y = p.height / 2;
+		}
+
+		p.draw = function(){
+			const step = p.floor(p.random(4));
+			switch (step) {
+			case 0:
+				x_next = x + 5;
+				y_next = y;
+				break;
+			case 1:
+				x_next = x - 5;
+				y_next = y;
+				break;
+			case 2:
+				y_next = y + 5;
+				x_next = x;
+				break;
+			case 3:
+				y_next = y - 5;
+				x_next = x;
+				break;
+		}
+
+		p.stroke(0);
+		p.strokeWeight(3);
+		p.line(x, y, x_next, y_next);
+		x = x_next;
+		y = y_next;
+		}
+	};
+	new p5(sketch, 'p5-canvas');
+}
+	
+p5RandomWalk()
+</code></pre>
+	
+		<p>In the future, I'd like to make a 3D random walker with Three.js, like <a href="https://codepen.io/DonKarlssonSan/pen/PeOxLX" target="_blank">this example</a>.</p>
+		
+		<p>Thanks for reading!</p>
+
+<!-- END SPACER -->
+</div>
+
+<a href="../../../index.html" class="btn return-home">&#8592;Return Home</a> 
+
+		  
 <script src="../../../js/d3.min.js"></script>
 
 <!-- Script for Blog -->

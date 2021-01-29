@@ -112,22 +112,43 @@ span.new {
 /* Mobile first queries */
 /* Larger than mobile */
 
-@media (min-width: 400px) {}
-
+@media (min-width: 400px) {
+  .container {
+    height: 100%;
+    width: 98%;
+  }
+}
+  
 
 /* Larger than tablet */
 
-@media (min-width: 550px) {}
-
+@media (min-width: 550px) {
+  .container {
+    height: 90%;
+    width: 95%;
+  }
+ 
+}
+  
 
 /* Larger than tablet */
 
-@media (min-width: 750px) {}
+@media (min-width: 750px) {
+  .container {
+    height: 100%;
+    width: 90%;
+  }
+}
 
 
 /* Larger than desktop */
 
-@media (min-width: 1000px) {}
+@media (min-width: 1000px) {
+  .container {
+    height: 100%;
+    width: 90%;
+  }
+}
 
 
 /* Larger than Desktop HD */
@@ -135,5 +156,9 @@ span.new {
 @media (min-width: 1200px) {
   h1 {
     font-size: 4rem;
+  }
+  .container {
+    height: 100%;
+    width: 90%;
   }
 }
