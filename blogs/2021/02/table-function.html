@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-77949830-4"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-77949830-4');
+	</script>
+
+	<!-- Basic -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Niko | Table from .csv or .json, using D3.js</title>
+	<meta name="description" content="Generating Tables from .csv or .json using D3.js">
+	<meta name="keywords" content="D3.js, dataviz, visualization, data, graphics, interactive, random, walk">
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+	<!-- Favicons -->
+    <link rel="shortcut icon" href="../../../img/favicons/favicon.ico">
+    <link rel='apple-touch-icon' sizes='180x180' href='../../../img/favicons/apple-touch-icon.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='../../../img/favicons/favicon-32x32.png'>
+	<link rel='icon' type='image/png' sizes='16x16' href='../../../img/favicons/favicon-16x16.png'>
+	
+	<!-- Ionicons -->
+	<!-- <link rel="stylesheet" href="../../../css/ionicons.css">	 -->
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<!-- Font -->
+	<link rel="stylesheet" href="https://use.typekit.net/ajw0cyt.css">
+
+	<!-- P5.js Scripts -->
+	<script src="../../../js/p5.min.js"></script>
+	<script src="../../../js/p5.dom.min.js"></script>
+
+	<!-- Highlight -->
+	<script src="../../../js/highlight/highlight.pack.js"></script>
+	<script src="../../../js/highlight/highlightjs-badge.min.js"></script>
+	<link rel="stylesheet" href="../../../css/highlight/atom-one-light.css">
+	
+	<!-- CSS for Specific Blog -->
+	<link rel="stylesheet" href="table-function.css" />
+
+</head>
+
+<body>
+
+<div class="info-box">
+	<span class="toggle intro">?</span>
+		<div class="content">
+		<p>Welcome to my blog. I do my utmost to make my code transparent and easy to understand. Send me an <a href="mailto:nsmccarty3@gmail.com" target="_blank">email</a> with feedback!</p>
+		</div>
+</div>
+
+<a href="../../../index.html" class="btn return-home">&#8592;Return Home</a> 
+		
+<div class="spacer">
+<h1>Generating Tables from .csv. or .json, using D3.js</h1>
+<br>
+
+<input type="text" id="searchTable" placeholder="Search data..">
+<div id="makeTable"></div>
+
+<!-- 
+Lots of resources:
+http://bl.ocks.org/ndarville/7075823
+https://stackoverflow.com/questions/55666363/d3-js-csv-to-html-table
+https://observablehq.com/@uw-info474/utilities
+-->
+
+<!-- END SPACER -->
+</div>
+
+<a href="../../../index.html" class="btn return-home">&#8592;Return Home</a> 
+
+		  
+<script src="../../../js/d3.min.js"></script>
+
+<!-- Script for Blog -->
+<script src="generateTable.js"></script>
+
+<!-- Highlight Script -->
+<script src="../../../js/highlight/run-highlight.js"></script>
+
+</body>
+</html>
