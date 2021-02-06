@@ -32,7 +32,7 @@ var tabulate = function (data,columns) {
     return table;
   }
 
-  d3.csv('pubmed_crispr_papers.csv')
+  d3.csv('../../data/pubmed_crispr_papers.csv')
   .then(function(data) {
     const columns = data.columns.slice();
     tabulate(data,columns);

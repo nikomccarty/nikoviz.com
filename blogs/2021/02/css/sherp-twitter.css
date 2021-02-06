@@ -1,0 +1,148 @@
+@import 'https://fonts.googleapis.com/css?family=Katibeh';
+
+.hero-heading {
+    font-family: 'Katibeh', cursive;
+    font-size: 50px;
+}
+
+body {
+    font-family: mr-eaves-sans, sans-serif;
+    font-size: 2em;
+    font-weight: 400;
+    font-style: normal;
+    color: #000;
+}
+
+.margin-top-40 {
+    margin-top: 40px;
+}
+
+.margin-bottom-40 {
+    margin-bottom: 40px;
+}
+
+.title {
+    position: relative;
+    width: 600px;
+    margin-bottom: 0.2em;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-feature-settings: 'tnum' 1;
+}
+
+.description {
+    max-width: 40em;
+    margin-bottom: 1.0em;
+    font-size: 0.9em;
+    text-align: center;
+    line-height: 1.4em;
+    opacity: 0.5;
+}
+
+.wrapper {
+    position: relative;
+}
+
+svg text {
+    fill: #34495e;
+}
+
+.bounds-background {
+    fill: white;
+}
+
+.x-axis-label {
+    font-size: 1.4em;
+}
+
+.y-axis-label {
+    font-size: 1.4em;
+    text-anchor: middle;
+    transform: rotate(-90deg);
+}
+
+.tick line,
+.domain {
+    stroke: #cfd4d8;
+}
+
+circle {
+    fill: #34495e;
+    opacity: 0.8;
+}
+
+.voronoi {
+    fill: transparent;
+}
+
+.histogram-area-male {
+    fill:rgb(76,146,195,0.4);
+    stroke: #4c92c3;
+}
+
+.histogram-area-female {
+    fill:rgb(255,153,62,0.4);
+    stroke: #ff993e;
+}
+
+.right-histogram {
+    transform-origin: 0 70px;
+}
+
+.tooltip-dot {
+    fill: none;
+    stroke: #6F1E51;
+    stroke-width: 2px;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.hover-line {
+    fill: #34495e;
+    transition: all 0.2s ease-out;
+    opacity: 0.5;
+    pointer-events: none;
+    mix-blend-mode: color-burn;
+}
+
+.tooltip {
+    opacity: 0;
+    position: absolute;
+    top: -14px;
+    left: 0;
+    padding: 0.6em 1em;
+    background: #fff;
+    text-align: center;
+    line-height: 1.4em;
+    font-size: 0.9em;
+    border: 1px solid #ddd;
+    z-index: 10;
+    transition: all 0.1s ease-out;
+    pointer-events: none;
+}
+
+.tooltip:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform: translate(-50%, 50%) rotate(45deg);
+    transform-origin: center center;
+    z-index: 10;
+}
+
+.tooltip-details {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+    font-size: 1.1em;
+    line-height: 1.4em;
+}
