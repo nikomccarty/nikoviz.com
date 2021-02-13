@@ -62,6 +62,7 @@
     <!-- Scripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/goodgraphics"></script>
 
     <!-- Data Table 
     -------------------------------------------------- -->
@@ -87,7 +88,7 @@
       <div class="row">
         <div class="u-full-width">
             <a class="button margin-top-40" href="../../../index.html">Return Home</a>
-            <h4 class="hero-heading">SHERP's Twitter Bias</h4>
+            <h4 class="hero-heading">Twitter Bias for NYU Science Journalists?</h4>
         </div>
       </div>
     </div>
@@ -96,10 +97,9 @@
   <div class="section blog-body">
       <div class="container">
         <div class="row">
-            <!-- <div class="two columns">Two</div> -->
             <div class="eight columns">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla pellentesque dignissim enim sit amet venenatis urna. Ornare massa eget egestas purus viverra accumsan in nisl nisi. Leo a diam sollicitudin tempor id. Malesuada proin libero nunc consequat interdum. Augue neque gravida in fermentum et sollicitudin ac orci phasellus. Maecenas pharetra convallis posuere morbi. Nam libero justo laoreet sit amet cursus. Rutrum quisque non tellus orci ac auctor. Nec nam aliquam sem et. Dolor sit amet consectetur adipiscing elit pellentesque habitant.</p>
-                <p>Diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Massa massa ultricies mi quis hendrerit dolor magna eget. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Sem viverra aliquet eget sit amet. Id volutpat lacus laoreet non curabitur gravida arcu. Aliquet eget sit amet tellus cras adipiscing enim. Urna cursus eget nunc scelerisque viverra mauris in aliquam sem. Nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut. Sollicitudin tempor id eu nisl. Amet facilisis magna etiam tempor orci eu lobortis elementum nibh. Integer malesuada nunc vel risus commodo viverra. Enim ut tellus elementum sagittis vitae et leo duis ut.</p>
+                <p><span class="first-letter">J</span>ournalists describe the world </p>
+                <p></p>
             </div>
             <div class="four columns">
                 <p>Testing an aside right here. Does this display?</p>
@@ -108,12 +108,66 @@
       </div>
   </div>
 
+  <div class="section blog-body">
+    <div class="container">
+      <div class="row">
+          <div class="eight columns">
+              <p>In Oct. 2019, a study, published in _JAMA Internal Medicine_, showed that...</p>
+              <p>Some of the study's findings are shown in this table.</p>
+          </div>
+          <div class="four columns">
+              <p>When I say that a study 'found' something, I am referring to a statistically significant difference between the groups. But statistical significance is not a certainty, and there is always a probability associated with these findings being true.</p>
+          </div>
+        </div>
+    </div>
+</div>
+
+  <!-- https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2753117 -->
+  <!-- Explain how I assigned gender, took every caution that I could, accounting for pronouns if mentioned in a Twitter bio, but may have mistakes. S-->
+
+  <table class="container">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Male</th>
+        <th>Female</th>
+        <th>p-value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Years with a Twitter acount</td>
+        <td>5.1 &#177; 2.6</td>
+        <td>4.5 &#177; 2.5</td>
+        <td>&#60;.001</td>
+      </tr>
+      <tr>
+        <td>What % of people that they follow are women?</td>
+        <td>42.6 &#177; 14.8</td>
+        <td>54.8 &#177; 14.6</td>
+        <td>&#60;.001</td>
+      </tr>
+      <tr>
+        <td>Average No. of Retweets per Original Tweet</td>
+        <td> 3.1 &#177; 3.4</td>
+        <td>2.4 &#177; 2.2</td>
+        <td>.01</td>
+      </tr>
+      <tr>
+        <td>No. of Twitter Followers</td>
+        <td>1162.3 &#177; 3056.2</td>
+        <td>567.5 &#177; 1819.7</td>
+        <td>&#60;.001</td>
+      </tr>
+    </tbody>
+  </table>
+
   <div class="section categories">
     <div class="container">
       <h3 class="section-heading">Responsive Images</h3>
       <p class="section-description">Skeleton images sit easily in grid with .u-max-full-width class. I suggest exploring solution to serving different images based on device size.</p>
       <div class="row">
-        <div class="column category">
+        <div class="ten columns column category">
           <img class="u-max-full-width" src="../../images/sherp_twitter_density.png">
         </div>
       </div>
@@ -124,10 +178,10 @@
     <div class="container">
       <div class="row">
           <div class="twelve columns">
-            <h2 class="title">A Catalogue of SHERP Tweeters</h2>
-            <div class="description">How many people follow each SHERP graduate? And how many people do they follow? Note that the scales are not equivalent.</div>
+    
             <div id="wrapper" class="wrapper">
-
+              <h3 class="section-heading">A Catalogue of SHERP Tweeters</h3>
+              <p class="section-description eight columns">How many people follow each SHERP graduate? And how many people do they follow? Note that the scales are not equivalent. (Mobile: Click near a dot to see its details.)</p>
               <div id="tooltip" class="tooltip">
                   <div class="tooltip-details">
                       <span id="name"></span><br>
@@ -136,13 +190,14 @@
                       <span id="following"></span>
                   </div>
               </div>
-  
-          </div>
+            </div>
           </div>
       </div>
     </div>
 </div>
 
+<!-- Add a whole footer section; emulate Tufte or Playfair or whoever. Where I got data, how I cleaned it, etc. -->
+<!-- Use this as a guide: http://www.laurabronner.com/quant-editing -->
   <!-- Additional scripts 
   ---------------------------------- -->
   <script src="../../../js/d3.min.js"></script>

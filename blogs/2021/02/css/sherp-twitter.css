@@ -7,7 +7,6 @@
 
 body {
     font-family: mr-eaves-sans, sans-serif;
-    font-size: 2em;
     font-weight: 400;
     font-style: normal;
     color: #000;
@@ -51,7 +50,7 @@ svg text {
 }
 
 .bounds-background {
-    fill: white;
+    fill: #f0f0f0;
 }
 
 .x-axis-label {
@@ -145,4 +144,9 @@ circle {
     font-weight: 600;
     font-size: 1.1em;
     line-height: 1.4em;
+}
+
+.section-container {
+    display: inline-block;
+    margin: 0 auto;
 }

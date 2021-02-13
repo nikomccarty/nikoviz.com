@@ -24,7 +24,7 @@ async function drawScatter() {
       width: width,
       height: width,
       margin: {
-        top: 20,
+        top: 5,
         right: 20,
         bottom: 60,
         left: 60,
@@ -44,7 +44,7 @@ async function drawScatter() {
     const wrapper = d3.select("#wrapper")
       .append("svg")
         .attr("width", dimensions.width)
-        .attr("height", dimensions.height)
+        .attr("height", dimensions.height);
   
     const bounds = wrapper.append("g")
       .style("transform", `translate(${
@@ -89,7 +89,15 @@ async function drawScatter() {
         .attr("cx", d => xScale(xAccessor(d)))
         .attr("cy", d => yScale(yAccessor(d)))
         .attr("r", 3)
-        .style("fill", d => colorScale(colorAccessor(d)))
+        .style("fill", d => {
+          if (d.gender == 'm') {
+            return 'steelblue'
+          } else if (d.gender == 'f') {
+            return 'coral'
+          } else {
+            return false;
+          }
+        })
 
     // 6. Draw peripherals
   
@@ -149,12 +157,6 @@ async function drawScatter() {
     const hoverElementsGroup = bounds.append("g")
         .attr("opacity", 0)
   
-    // we'll use <rect>s instead of <line>s to take advantage of CSS transitions
-    const horizontalLine = hoverElementsGroup.append("rect")
-        .attr("class", "hover-line")
-    const verticalLine = hoverElementsGroup.append("rect")
-        .attr("class", "hover-line")
-  
     const dayDot = hoverElementsGroup.append("circle")
         .attr("class", "tooltip-dot")
         .raise()
@@ -162,30 +164,32 @@ async function drawScatter() {
     function onVoronoiMouseEnter(event, d) {
         d3.select(this).attr('r', 10);
   
-      hoverElementsGroup.style("opacity", 1)
-      const x = xScale(xAccessor(d))
-      const y = yScale(yAccessor(d))
-      dayDot.attr("cx", d => x)
-          .attr("cy", d => y)
-          .attr("r", 7)
-  
-      tooltip.select("#name")
-          .text(nameAccessor(d))
-  
-      tooltip.select("#followers")
-          .text(yAccessor(d) + " followers");
+        hoverElementsGroup.style("opacity", 1)
+        const x = xScale(xAccessor(d))
+        const y = yScale(yAccessor(d))
+        dayDot.attr("cx", d => x)
+            .attr("cy", d => y)
+            .attr("r", 7)
+    
+        tooltip.select("#name")
+            .text(nameAccessor(d))
+    
+        tooltip.select("#followers")
+            .text(yAccessor(d) + " followers");
 
-      tooltip.select("#following")
-            .text(xAccessor(d) + " following");
+        tooltip.select("#following")
+              .text(xAccessor(d) + " following");
 
-      tooltip.select("#handle")
-            .text("@" + handleAccessor(d));
-  
+        tooltip.select("#handle")
+              .text("@" + handleAccessor(d));
+    
+        // const tooltipX = d3.pointer(event);
+        // const tooltipY = d3.pointer(event) - 4;
       const tooltipX = xScale(xAccessor(d))
-        + dimensions.margin.left
+        + dimensions.margin.left 
       const tooltipY = yScale(yAccessor(d))
         + dimensions.margin.top
-        - 4 // bump up so it doesn't overlap with out hover circle
+        + 120;
   
       tooltip.style("transform", `translate(`
         + `calc( -50% + ${tooltipX}px),`
