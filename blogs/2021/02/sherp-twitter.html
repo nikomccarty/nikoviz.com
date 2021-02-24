@@ -89,6 +89,7 @@
         <div class="u-full-width">
             <a class="button margin-top-40" href="../../../index.html">Return Home</a>
             <h4 class="hero-heading">Twitter Bias for NYU Science Journalists?</h4>
+            <h5>By Niko McCarty</h5>
         </div>
       </div>
     </div>
@@ -98,32 +99,13 @@
       <div class="container">
         <div class="row">
             <div class="eight columns">
-                <p><span class="first-letter">J</span>ournalists describe the world </p>
-                <p></p>
-            </div>
-            <div class="four columns">
-                <p>Testing an aside right here. Does this display?</p>
-            </div>
+                <p><span class="first-letter">A</span> few months ago, while dreaming up story ideas for a health journalism course at NYU, I came across a study about gender disparities—in a medical journal.</p>
+                <p>In that paper, researchers quantified the influence that male and female medical researchers exert on Twitter. The main finding: female medical researchers have a lower number of Twitter followers compared to their male colleagues, and this gap tends to widen as women progress in their careers and are promoted to higher tenure ranks. The paper is called “<a href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2753117" target="_blank">Gender Differences in Twitter Use and Influence Among Health Policy and Health Services Researchers</a>,” and it was published in <em>JAMA Internal Medicine</em> in 2019. The title might be a mouthful, but its findings are deep; its data substantive.</p>
+                <p>For this study, the researchers also analyzed the mean proportion of women who follow women, how many retweets an original tweet garners for men compared to women, and many other things. I highlight some of the surprising or important gender disparities in the table below.</p>
+              </div>
           </div>
       </div>
   </div>
-
-  <div class="section blog-body">
-    <div class="container">
-      <div class="row">
-          <div class="eight columns">
-              <p>In Oct. 2019, a study, published in _JAMA Internal Medicine_, showed that...</p>
-              <p>Some of the study's findings are shown in this table.</p>
-          </div>
-          <div class="four columns">
-              <p>When I say that a study 'found' something, I am referring to a statistically significant difference between the groups. But statistical significance is not a certainty, and there is always a probability associated with these findings being true.</p>
-          </div>
-        </div>
-    </div>
-</div>
-
-  <!-- https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2753117 -->
-  <!-- Explain how I assigned gender, took every caution that I could, accounting for pronouns if mentioned in a Twitter bio, but may have mistakes. S-->
 
   <table class="container">
     <thead>
@@ -148,40 +130,89 @@
         <td>&#60;.001</td>
       </tr>
       <tr>
-        <td>Average No. of Retweets per Original Tweet</td>
+        <td>Average number of retweets per original tweet</td>
         <td> 3.1 &#177; 3.4</td>
         <td>2.4 &#177; 2.2</td>
         <td>.01</td>
       </tr>
       <tr>
-        <td>No. of Twitter Followers</td>
+        <td>Number of Twitter followers</td>
         <td>1162.3 &#177; 3056.2</td>
         <td>567.5 &#177; 1819.7</td>
         <td>&#60;.001</td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <td>Data Source: Jane M. Zhu, MD, et al. "Gender Differences in Twitter Use and Influence Among Health Policy and Health Services Researchers" <em>JAMA Internal Medicine</em>, 2019.</td>
+      </tr>
+    </tfoot>
   </table>
 
-  <div class="section categories">
+  <br>
+
+  <div class="section blog-body">
     <div class="container">
-      <h3 class="section-heading">Responsive Images</h3>
-      <p class="section-description">Skeleton images sit easily in grid with .u-max-full-width class. I suggest exploring solution to serving different images based on device size.</p>
       <div class="row">
-        <div class="ten columns column category">
-          <img class="u-max-full-width" src="../../images/sherp_twitter_density.png">
+          <div class="eight columns">
+              <p>After reading this study, I wondered if the same Twitter "bias" — namely, that women have fewer Twitter followers than men — also applies to other professional fields. As a journalist studying at NYU, I started to explore Twitter data for past graduates of the Science, Health and Environmental Reporting, or <a href="https://journalism.nyu.edu/graduate/programs/science-health-and-environmental-reporting/" target="_blank">SHERP</a>, program. This is a masters program for science journalists.</p>
+              <p>I found a Twitter list called “<a href="https://twitter.com/i/lists/46864545" target="_blank">SHERP Tweeters</a>” that  includes a limited subset of SHERP graduates extending back more than a decade. Then, I used Python and <a href="https://www.tweepy.org/" target="_blank">Tweepy</a> (an open-source Python library for accessing the Twitter API) to collect public data from their accounts. This data was collected on October 10, 2020 and includes the number of each person’s followers, how many people they follow, their Twitter handle, and other basic information. Gender was inferred for each person based on pronouns listed in their public account; it is possible that some people have been mis-gendered, and I apologize if that’s the case.</p> 
+              <p>With the data thus collected and tidied, I plotted two simple scatterplots. In the plots below, each dot represents a person in one of two datasets; the science journalist data that I collected, or the medical researcher data from that <em>JAMA Internal Medicine</em> paper. On the x-axis, I plotted the number of people that each individual is following. Then, on the y-axis, I plotted their number of followers. Overlaid on this scatterplot are regression lines, for both men and women, with a 95% confidence interval shown in a lower opacity. The scatterplots for the two datasets look very similar.</p>
+            </div>
         </div>
+    </div>
+</div>
+
+<div class="section categories">
+  <div class="container">
+    <div class="row">
+      <div class="ten columns column category">
+        <img class="u-max-full-width" src="../../images/sherp_twitter_regressions.png">
       </div>
     </div>
   </div>
+</div>
+
+  <div class="section blog-body">
+    <div class="container">
+      <div class="row">
+          <div class="eight columns">
+              <p>Next, I focused in on the SHERP dataset, and looked solely at differences in the number of followers for male versus female science journalists. The distribution of followers for male SHERP graduates appears bimodal; that is, most men have between 500 and 5,000 Twitter followers, but there is a second group that has between 7,000 and 12,000 followers. For female SHERP graduates, there is only one large peak in the data. The majority of female SHERPies have 1,000 followers or less.</p>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="section categories">
+  <div class="container">
+    <div class="row">
+      <div class="ten columns column category">
+        <img class="u-max-full-width" src="../../images/sherp_twitter_density.png">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section blog-body">
+  <div class="container">
+    <div class="row">
+        <div class="eight columns">
+            <p>A density plot — though pretty to look at — doesn't tell us whether or not a significant difference exists between the two groups. To answer that question, I used Python to perform a <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)" target="_blank">bootstrapping</a> analysis. <a href="https://github.com/nikomccarty/dataviz_blog/blob/main/20201002_Twitter_SHERP_Disparities/20210205_bootstrap.ipynb" target="_blank">My code</a> for that statistical analysis (in the form of a Jupyter notebook) can be viewed and downloaded on GitHub.</p>
+            <p>What I found is that there is no statistically significant difference in the number of Twitter followers for male and female SHERP graduates. My null hypothesis was that the two genders have the same number of Twitter followers, and I was not able to reject that hypothesis, using an arbitrary p-value threshold of 0.05. My calculated p-value was 0.084.</p>
+            <p>I'm not comfortable making concrete claims based on a simple statistical test, anyway. The SHERP dataset has all sorts of problems; genders might be misassigned and not all SHERPies are on the list. My dataset is also quite a bit smaller than the medical researcher dataset, and why is 0.05 considered a typical p-value anyway? All I can say, for sure, is that the <em>visual</em> plots show marked differences between male and female science journalists, and their followings on Twitter.</p>
+            <p>Explore the full SHERP dataset for yourself in the interactive scatterplot below. Thanks for reading!</p>
+        </div>
+      </div>
+  </div>
+</div>
 
   <div class="section scatterplot">
     <div class="container">
       <div class="row">
-          <div class="twelve columns">
+          <div class="ten columns">
     
             <div id="wrapper" class="wrapper">
               <h3 class="section-heading">A Catalogue of SHERP Tweeters</h3>
-              <p class="section-description eight columns">How many people follow each SHERP graduate? And how many people do they follow? Note that the scales are not equivalent. (Mobile: Click near a dot to see its details.)</p>
               <div id="tooltip" class="tooltip">
                   <div class="tooltip-details">
                       <span id="name"></span><br>
@@ -190,34 +221,19 @@
                       <span id="following"></span>
                   </div>
               </div>
+              
             </div>
+            <p class="section-description eight columns">How many people follow each SHERP graduate? And how many people do they follow? Note that the scales are not equivalent. (On mobile: Click near a dot to see its details.)</p>
           </div>
       </div>
     </div>
 </div>
 
-<!-- Add a whole footer section; emulate Tufte or Playfair or whoever. Where I got data, how I cleaned it, etc. -->
-<!-- Use this as a guide: http://www.laurabronner.com/quant-editing -->
   <!-- Additional scripts 
   ---------------------------------- -->
   <script src="../../../js/d3.min.js"></script>
   <script src="./js/sherpTwitter.js"></script>
 
-  <!-- <script>
-    async function drawTable() {
-        let dataset = await d3.csv("../../data/pubmed_crispr_papers.csv");
-        $('#myTable').DataTable( {
-            responsive: true,
-            data: dataset,
-            columns: [
-                { data: 'Year',
-                  title: 'Year' },
-                { data: 'Count', title: 'Count' },
-            ],
-        } );
-    }
-    drawTable();
-  </script> -->
   
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

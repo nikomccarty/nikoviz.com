@@ -421,6 +421,11 @@ there.
 /* Add Styles */
 
 .first-letter {
-  font-size: 2.5em;
-  font-weight: 700;
+  color: black;
+  float: left;
+  font-size: 75px;
+  line-height: 60px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
 }
