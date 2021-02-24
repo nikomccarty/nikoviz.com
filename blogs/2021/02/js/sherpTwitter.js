@@ -189,7 +189,7 @@ async function drawScatter() {
         + dimensions.margin.left 
       const tooltipY = yScale(yAccessor(d))
         + dimensions.margin.top
-        + 80;
+        + 70;
   
       tooltip.style("transform", `translate(`
         + `calc( -50% + ${tooltipX}px),`
